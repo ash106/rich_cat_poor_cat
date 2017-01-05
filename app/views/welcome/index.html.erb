@@ -7,5 +7,7 @@
       <a class="waves-effect waves-light btn-large" id="button">Reveal</a>
       <a class="waves-effect waves-light btn-large" id="next">Next</a>
     </div>
+    <%= content_tag "div", id: "cats", data: { cats: @cats } do %>
+    <% end %>
   </div>
 </div>

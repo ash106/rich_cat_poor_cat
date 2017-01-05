@@ -1,4 +1,7 @@
 $(function() {
+  var cats = $('#cats').data('cats');
+  console.table(cats);
+
   var canvas = document.getElementById('c');
   var ctx = canvas.getContext('2d');
   var img = new Image();
