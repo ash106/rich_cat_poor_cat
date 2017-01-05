@@ -1,11 +1,14 @@
 <div class="container">
   <div class="row center-align">
     <div class="col s12">
-      <canvas id="c" width="400" height="400"></canvas>
+      <h1>Rich Cat/Poor Cat</h1>
     </div>
     <div class="col s12">
-      <a class="waves-effect waves-light btn-large" id="button">Reveal</a>
-      <a class="waves-effect waves-light btn-large" id="next">Next</a>
+      <canvas id="canvas" width="400" height="400"></canvas>
+    </div>
+    <div class="col s12" id="buttons">
+      <a class="waves-effect waves-light btn-large green darken-1" id="rich">Rich</a>
+      <a class="waves-effect waves-light btn-large red darken-1" id="poor">Poor</a>
     </div>
     <%= content_tag "div", id: "cats", data: { cats: @cats } do %>
     <% end %>

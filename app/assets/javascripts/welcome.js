@@ -2,7 +2,7 @@ $(function() {
   var cats = $('#cats').data('cats');
   console.table(cats);
 
-  var canvas = document.getElementById('c');
+  var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   var img = new Image();
   var cw = canvas.width;
@@ -59,7 +59,7 @@ $(function() {
     console.log("outro");
   }
 
-  $("#button").click(function(){
+  $("#rich, #poor").click(function(){
     // ctx.drawImage(img, 0, 0);
     requestAnimationFrame(outro);
     console.log("clicked");
