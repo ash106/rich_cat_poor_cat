@@ -1,0 +1,27 @@
+<%= form_for(cat, multipart: true) do |f| %>
+  <% if cat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cat.errors.count, "error") %> prohibited this cat from being saved:</h2>
+
+      <ul>
+      <% cat.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :finances %>
+    <%= f.number_field :finances %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

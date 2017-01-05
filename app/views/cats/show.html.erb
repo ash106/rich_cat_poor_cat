@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag @cat.image.url(:medium) %>
+
+<p>
+  <strong>Finances:</strong>
+  <%= @cat.finances %>
+</p>
+
+<p>
+  <strong>Mask params:</strong>
+  <%= "#{@cat.x}, #{@cat.y}, #{@cat.radius}" %>
+</p>
+
+<%= link_to 'Edit', edit_cat_path(@cat) %> |
+<%= link_to 'Back', cats_path %>
