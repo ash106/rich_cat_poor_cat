@@ -14,10 +14,23 @@ h1 {
   color: #f5f5f5;
 }
 
-#poor {
-  margin-left: 3rem;
-}
-
 #buttons {
   margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+
+#result-text {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 100;
+  color: #f5f5f5;
+}
+
+h3 {
+  font-size: 2.75rem;
+  line-height: 145%;
+}
+
+.row {
+  margin-bottom: 0;
 }

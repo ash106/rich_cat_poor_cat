@@ -1,16 +1,28 @@
-<div class="container">
-  <div class="row center-align">
+<div class="container center-align">
+  <div class="row">
     <div class="col s12">
       <h1>Rich Cat/Poor Cat</h1>
     </div>
+  </div>
+  <div class="row">
     <div class="col s12">
       <canvas id="canvas" width="400" height="400"></canvas>
     </div>
-    <div class="col s12" id="buttons">
-      <a class="waves-effect waves-light btn-large green darken-1" id="rich">Rich</a>
-      <a class="waves-effect waves-light btn-large red darken-1" id="poor">Poor</a>
-    </div>
-    <%= content_tag "div", id: "cats", data: { cats: @cats } do %>
-    <% end %>
   </div>
+  <div class="row" id="buttons">
+    <div class="col s6">
+      <a class="waves-effect waves-light btn-large green darken-1" id="rich" disabled="disabled">Rich</a>
+    </div>
+    <div class="col s6">
+      <a class="waves-effect waves-light btn-large red darken-1" id="poor" disabled="disabled">Poor</a>
+    </div>
+    <div class="col s7">
+      <h3 id="result-text">You Win!</h3>
+    </div>
+    <div class="col s5">
+      <a class="waves-effect waves-light btn-large" id="next">Next</a>
+    </div>
+  </div>
+  <%= content_tag "div", id: "cats", data: { cats: @cats } do %>
+  <% end %>
 </div>

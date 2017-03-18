@@ -1,26 +1,45 @@
 $(function() {
-  var cats = $('#cats').data('cats');
-  console.table(cats);
-
+  // Variables and such
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   var img = new Image();
   var cw = canvas.width;
   var ch = canvas.height;
-  var cx = 241;
-  var cy = 267;
-  var catRadius = 35;
+  var cx;
+  var cy;
+  var catRadius;
   var radius = 0;
+  var count = 0;
+  var cat;
 
-  $('#next').attr('disabled', true);
+  // Get cat data and shuffle cats into random order
+  var cats = $('#cats').data('cats');
+  var shuffled_cats = _.shuffle(cats);
+  console.table(shuffled_cats);
 
+  // Get first cat
+  get_next_cat();
+
+  // Start intro animation on image load
   img.onload = function() {
     requestAnimationFrame(intro);
     console.log("onload");
   };
 
-  img.src = "http://s3.amazonaws.com/rich-poor-cat-dev/cats/images/000/000/001/medium/open-uri20150307-64667-1s7fxl1?1425765754";
+  // Hide result and next button, show rich and poor buttons, load next cat's data
+  function get_next_cat() {
+    $('#result-text').hide();
+    $('#next').hide().attr('disabled', true);
+    $('#rich, #poor').show().attr('disabled', true);
+    cat = shuffled_cats[count];
+    img.src = cat.image_url;
+    cx = cat.x;
+    cy = cat.y;
+    catRadius = cat.radius;
+    radius = 0;
+  }
 
+  // 
   function draw() {
     ctx.clearRect(0,0,cw,ch);
 
@@ -40,18 +59,23 @@ $(function() {
     ctx.restore();
   }
 
+  // Intro animation
   function intro(time) {
-    if (radius >= catRadius) { return; }
+    if (radius >= catRadius) { 
+      $('#rich, #poor').attr('disabled', false);
+      return; 
+    }
     radius += 1;
     draw();
     requestAnimationFrame(intro);
     console.log("intro");
   }
 
+  // Outro animation
   function outro(time) {
-    if (radius > 600) { 
+    if (radius > 566) { 
       $('#next').attr('disabled', false);
-      return; 
+      return;
     }
     radius += 5;
     draw();
@@ -59,21 +83,32 @@ $(function() {
     console.log("outro");
   }
 
+  // Check win condition and play outro animation
   $("#rich, #poor").click(function(){
-    // ctx.drawImage(img, 0, 0);
+    console.log($(this).attr('id'));
+    console.log(cat.finances);
+    $('#rich, #poor').hide();
+    if ($(this).attr('id') === cat.finances) {
+      $('#result-text').text("You Win!");
+    } else {
+      $('#result-text').text("Loser");
+    }
+    $('#result-text, #next').show();
     requestAnimationFrame(outro);
     console.log("clicked");
   })
 
+  // Load next cat's data
   $("#next").click(function(){
-    // ctx.drawImage(img, 0, 0);
-    img.src = "http://s3.amazonaws.com/rich-poor-cat/cats/images/000/000/004/medium/open-uri20140509-2-1nmlj6n?1399672120";
-    cx = 160;
-    cy = 165;
-    catRadius = 37;
-    radius = 0;
-    $('#next').attr('disabled', true);
-    // requestAnimationFrame(intro);
+    count += 1;
+    console.log(count);
+    // If last cat in shuffled_cats, reshuffle the array
+    if (count > cats.length - 1) {
+      console.log("reshuffle");
+      shuffled_cats = _.shuffle(cats);
+      count = 0;
+    }
+    get_next_cat();
     console.log("next");
   })
 });
