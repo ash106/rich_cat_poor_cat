@@ -15,7 +15,6 @@ $(function() {
   // Get cat data and shuffle cats into random order
   var cats = $('#cats').data('cats');
   var shuffled_cats = _.shuffle(cats);
-  console.table(shuffled_cats);
 
   // Get first cat
   get_next_cat();
@@ -23,7 +22,6 @@ $(function() {
   // Start intro animation on image load
   img.onload = function() {
     requestAnimationFrame(intro);
-    console.log("onload");
   };
 
   // Hide result and next button, show rich and poor buttons, load next cat's data
@@ -68,7 +66,6 @@ $(function() {
     radius += 1;
     draw();
     requestAnimationFrame(intro);
-    console.log("intro");
   }
 
   // Outro animation
@@ -80,13 +77,10 @@ $(function() {
     radius += 5;
     draw();
     requestAnimationFrame(outro);
-    console.log("outro");
   }
 
   // Check win condition and play outro animation
   $("#rich, #poor").click(function(){
-    console.log($(this).attr('id'));
-    console.log(cat.finances);
     $('#rich, #poor').hide();
     if ($(this).attr('id') === cat.finances) {
       $('#result-text').text("You Win!");
@@ -95,20 +89,16 @@ $(function() {
     }
     $('#result-text, #next').show();
     requestAnimationFrame(outro);
-    console.log("clicked");
   })
 
   // Load next cat's data
   $("#next").click(function(){
     count += 1;
-    console.log(count);
     // If last cat in shuffled_cats, reshuffle the array
     if (count > cats.length - 1) {
-      console.log("reshuffle");
       shuffled_cats = _.shuffle(cats);
       count = 0;
     }
     get_next_cat();
-    console.log("next");
   })
 });
