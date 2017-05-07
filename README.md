@@ -1,8 +1,8 @@
 # Rich Cat/Poor Cat
 
-[Demo](http://richpoorcat.com/)
-
 ![Rich Cat/Poor Cat](http://i.imgur.com/XLzo6QC.gif)
+
+[Demo](http://richpoorcat.com/)
 
 ## Built With
 
