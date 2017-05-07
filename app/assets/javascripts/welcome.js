@@ -37,7 +37,7 @@ $(function() {
     radius = 0;
   }
 
-  // 
+  // Draw current cat and mask
   function draw() {
     ctx.clearRect(0,0,cw,ch);
 
